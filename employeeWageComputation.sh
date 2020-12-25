@@ -1,15 +1,19 @@
 #! /bin/bash -x
 isFullTime=1;
+workingHrs=0
 isPartTime=2;
-randomCheck=$((RANDOM % 3));
 wagePerHr=20;
-workingDays=20;
+workingDays=0;
+totalWorkHrs=100;
+totalWorkDays=20;
 totalSalary=0;
-for (( day=1; day<=$workingDays; day++ ))
-do
-	randomCheck=$((RANDOM % 3));
+while [[ $workingHrs -le $totalWorkHrs && $workingDays -lt $totalWorkDays ]]
 
-	case $randomCheck in
+do
+	workingDays=$((workingDays+1))
+	empCheck=$((RANDOM % 3));
+
+	case $empCheck in
         	$isFullTime)
         	workingHrs=8 ;;
         	$isPartTime )
@@ -18,6 +22,8 @@ do
         	workingHrs=0 ;;
 
 	esac
-	Salary=$(( $wagePerHr*$workingHrs ))
-	totalSalary=$(( $Salary+$totalSalary ))
+	workingHrs+=$(($workingHrs))
+
+
 done
+	Salary=$(( $wagePerHr*$workingHrs ))
