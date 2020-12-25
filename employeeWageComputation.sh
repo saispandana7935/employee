@@ -1,14 +1,18 @@
 #! /bin/bash -x
-isPresent=1
-isAbsent=0
-wagePerHr=20
-fullDay=8
-check=$((RANDOM%2))
-if [ $check -eq $isPresent ]
+isFullTime=1;
+isPartTime=2;
+randomCheck=$((RANDOM % 3));
+wagePerHr=20;
+if [ $isFullTime -eq $randomCheck ];
 then
-  echo "Employee is Present "
-   Salary=$(( $wagePerHr*$fullDay ))
+        workingHrs=8;
+elif [ $isPartTime -eq $randomCheck ];
+then
+        workingHrs=4;
 else
-  echo " Employee is Absent "
-   Salary=0
- fi
+        workingHrs=0;
+
+fi
+Salary=$(( $wagePerHr*$workingHrs));
+
+echo "salary received by employee is" $Salary
