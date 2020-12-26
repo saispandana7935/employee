@@ -27,6 +27,8 @@ do
 	workingDays=$((workingDays+1))
 	workingHrs="$(getWorkingHrs $((RANDOM%3)) )"
 	totalWorkingHrs=$((totalWorkingHrs+workingHrs))
+	dailyWage[$workingDays]=$((workingHrs*wagePerHr))
 
 done
 	Salary=$(( $wagePerHr*$totalWorkingHrs ))
+	echo ${dailyWage[@]}
