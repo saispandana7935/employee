@@ -21,14 +21,16 @@ function getWorkingHrs(){
 		echo $workingHrs
 }
 
-while [[ $totalWorkingHrs -le $totalWorkHrs && $workingDays -le $totalWorkDays ]]
+while [[ $totalWorkingHrs -le $totalWorkHrs && $workingDays -lt $totalWorkDays ]]
 
 do
 	workingDays=$((workingDays+1))
+	days[$workingDays]=$workingDays
 	workingHrs="$(getWorkingHrs $((RANDOM%3)) )"
 	totalWorkingHrs=$((totalWorkingHrs+workingHrs))
 	dailyWage[$workingDays]=$((workingHrs*wagePerHr))
 
 done
 	Salary=$(( $wagePerHr*$totalWorkingHrs ))
+	echo ${days[@]}
 	echo ${dailyWage[@]}
